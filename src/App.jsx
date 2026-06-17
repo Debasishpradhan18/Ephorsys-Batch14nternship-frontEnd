@@ -8,6 +8,7 @@ import ContactPage from "./pages/ContactPage"
 import BookTable from "./components/BookTable"
 import LoginPage from "./pages/LoginPage"
 import Register from "./pages/Register"
+import OurMenu from "./pages/OurMenu"
 function App() {
   return (
     <>
@@ -22,6 +23,8 @@ function App() {
             <Route path="/booktable" element={<BookTable />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/our-menu" element={<OurMenu />} />
+
 
           </Routes>
         </div>
