@@ -14,7 +14,7 @@ function Footer() {
         <div className="footer-left">
           <div className="logo-name">
             <img className="logo" src={image} alt="My Logo" />
-            <h2 className="heading">Manoj-Food-Cornor</h2>
+            <h2 className="heading">Chiku-Food-Cornor</h2>
           </div>
           <p className="para">In the new era of technology we look a in the future with certainty and pride to for our company and.</p>
           <div className="social-icons">

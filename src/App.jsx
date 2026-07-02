@@ -12,6 +12,12 @@ import OurMenu from "./pages/OurMenu"
 import ProtectedRoutes from "./ProtectedRoutes"
 import Dashboard from "./components/Dashboard"
 import AdminPanel from "./admin/AdminPanel"
+import  AdminFood  from "./admin/AdminFood"
+import AdminFoodAdd from "./admin/AdminFoodAdd"
+import FoodUpdatePage from "./admin/FoodUpdatePage";
+import  OurFood  from "./pages/OurFood"
+import FoodDetailsPage from "./pages/FoodDetailsPage"
+import OrderSuccess from "./pages/OrderSuccess"
 
 function Layout() {
   const isAdminRoue = location.pathname.startsWith("/admin");
@@ -29,12 +35,31 @@ function Layout() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/our-menu" element={<OurMenu />} />
+          <Route path="/our-foods" element={<OurFood />} />
+          <Route path="/details/:id" element={<FoodDetailsPage />} />
+          <Route path="/order-success" element={<OrderSuccess />} />
+
           <Route path="/admin" element={<ProtectedRoutes />}>
             <Route path="" element={<AdminPanel />}>
               <Route
                 path="dashboard"
                 element={<Dashboard />}
               />
+              <Route
+                path="Food"
+                element={<AdminFood />}
+              />
+
+              <Route
+                path="add"
+                element={<AdminFoodAdd />}
+              />
+
+              <Route
+                path="update/:id"
+                element={<FoodUpdatePage />}
+              />
+
             </Route>
           </Route>
         </Routes>
