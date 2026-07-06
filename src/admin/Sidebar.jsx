@@ -1,4 +1,4 @@
-import { LayoutDashboard, LogOut, X, Users } from "lucide-react";
+import { LayoutDashboard, LogOut, X, Users, Contact, Table } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
@@ -18,7 +18,12 @@ const NAV_ITEMS = [
   {
     path: "/admin/table",
     label: "Table",
-    icon: Users,
+    icon: Table,
+  },
+    {
+    path: "/admin/contact",
+    label: "Contact",
+    icon: Contact,
   },
 ];
 

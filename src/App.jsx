@@ -22,6 +22,7 @@ import AdminFood from "./admin/AdminFood";
 import AdminFoodAdd from "./admin/AdminFoodAdd";
 import FoodUpdatePage from "./admin/FoodUpdatePage";
 import Table from "./admin/Table";
+import AdminContact from "./admin/AdminContact";
 
 function Layout() {
   const location = useLocation();
@@ -56,6 +57,7 @@ function Layout() {
               <Route path="add" element={<AdminFoodAdd />} />
               <Route path="update/:id" element={<FoodUpdatePage />} />
               <Route path="table" element={<Table />} />
+              <Route path="contact" element={<AdminContact />} />
             </Route>
           </Route>
         </Routes>
