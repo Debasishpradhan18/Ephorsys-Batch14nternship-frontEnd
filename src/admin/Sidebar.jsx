@@ -2,19 +2,28 @@ import { LayoutDashboard, LogOut, X, Users } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+import Logo from "../assets/foodlogochikiu.png";
 
 const NAV_ITEMS = [
-  { path: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { path: "/admin/food", label: "Food", icon: Users },
-
-
+  {
+    path: "/admin/dashboard",
+    label: "Dashboard",
+    icon: LayoutDashboard,
+  },
+  {
+    path: "/admin/food",
+    label: "Food",
+    icon: Users,
+  },
+  {
+    path: "/admin/table",
+    label: "Table",
+    icon: Users,
+  },
 ];
 
-
-
-
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -26,13 +35,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       );
 
       localStorage.removeItem("user");
-
       navigate("/login");
     } catch (error) {
       console.log(error);
     }
   };
-
 
   return (
     <>
@@ -54,85 +61,89 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       {/* Sidebar */}
       <aside
         className={`
-          fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-white flex flex-col transition-transform duration-300
-          lg:relative lg:translate-x-0 lg:shrink-0
-          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+          fixed inset-y-0 left-0 z-50
+          w-72
+          bg-slate-900
+          text-white
+          flex
+          flex-col
+          transition-transform
+          duration-300
+          lg:relative
+          lg:translate-x-0
+          lg:shrink-0
+          ${
+            sidebarOpen
+              ? "translate-x-0"
+              : "-translate-x-full"
+          }
         `}
       >
-        {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="flex items-center justify-between px-6 py-1 border-b border-white/10"
-        >
-          <div className="flex items-center gap-2">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden">
-              <img
-                src="/mylogo.png"
-                alt="Logo"
-                className="w-full h-full object-contain"
-                onError={(e) => { e.target.style.display = "none"; }}
-              />
-            </div>
-            <div>
-              <p className="text-md font-extrabold tracking-tight leading-tight">SAVERA</p>
-            </div>
-          </div>
+        {/* Logo Section */}
+        <div className="border-b border-slate-700 py-5 flex flex-col items-center">
 
-          <button
-            className="lg:hidden p-1.5 hover:bg-white/10 rounded-lg transition"
-            onClick={() => setSidebarOpen(false)}
-          >
-            <X size={18} />
-          </button>
-        </motion.div>
+          <img
+            src={Logo}
+            alt="Logo"
+            className="w-20 h-20 rounded-full bg-white p-2 object-contain shadow-lg"
+          />
 
-        {/* Navigation */}
-        <nav className="flex-1 px-4 py-6 space-y-1">
-          {NAV_ITEMS.map(({ path, label, icon: Icon }, i) => (
-            <motion.div
+          <h2 className="mt-3 text-xl font-bold tracking-wide text-center">
+           Chiku FOOD SHOP
+          </h2>
+
+          <p className="text-sm text-slate-400">
+            Admin Panel
+          </p>
+
+        </div>
+
+        {/* Menu */}
+        <nav className="flex-1 px-4 py-5 space-y-2">
+
+          {NAV_ITEMS.map(({ path, label, icon: Icon }) => (
+
+            <NavLink
               key={path}
-              initial={{ opacity: 0, x: -16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 + i * 0.07, duration: 0.3, ease: "easeOut" }}
+              to={path}
+              onClick={() => setSidebarOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300
+                ${
+                  isActive
+                    ? "bg-blue-600 text-white"
+                    : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                }`
+              }
             >
-              <NavLink
-                to={path}
-                onClick={() => setSidebarOpen(false)}
-                className={({ isActive }) =>
-                  `w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all
-                  ${isActive
-                    ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
-                    : "text-slate-400 hover:text-white hover:bg-white/10"
-                  }`
-                }
-              >
-                <Icon size={18} />
-                {label}
-              </NavLink>
-            </motion.div>
+              <Icon size={20} />
+              <span className="text-[16px]">{label}</span>
+            </NavLink>
+
           ))}
+
         </nav>
 
         {/* Logout */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.3 }}
-          className="px-4 pb-6"
-        >
-          <motion.button
-            whileHover={{ backgroundColor: "red" }}
-            whileTap={{ scale: 0.97 }}
+        <div className="p-4 border-t border-slate-700">
 
-            className="w-full flex cursor-pointer items-center gap-3 px-4 py-2.5 bg-red-600 rounded-xl text-sm font-medium text-white"
-            onClick={() => handleLogout()}
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 transition py-3 rounded-xl font-semibold"
           >
-            <LogOut size={18} />
+            <LogOut size={20} />
             Logout
-          </motion.button>
-        </motion.div>
+          </button>
+
+        </div>
+
+        {/* Mobile Close */}
+        <button
+          className="absolute top-4 right-4 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        >
+          <X />
+        </button>
       </aside>
     </>
   );

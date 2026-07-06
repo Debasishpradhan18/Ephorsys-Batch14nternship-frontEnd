@@ -90,8 +90,7 @@ const FoodDetailsPage = () => {
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
 
               <button
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg 
-                font-semibold duration-300" onClick={() => navigate('/order-success')}
+                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold duration-300" onClick={() => navigate("/order-success")}
               >
                 Order Now
               </button>

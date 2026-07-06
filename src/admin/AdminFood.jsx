@@ -6,8 +6,8 @@ const AdminFood = () => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const getAllFoods = async () => {
     try {
       const response = await axios.get(
@@ -25,6 +25,11 @@ const AdminFood = () => {
     }
   };
 
+  useEffect(() => {
+    getAllFoods();
+  }, []);
+
+
   const handelDeleteFood = async (id) => {
     try {
       const response = await axios.delete(`http://localhost:8800/api/food/delete/${id}`, { withCredentials: true })
@@ -36,19 +41,12 @@ const AdminFood = () => {
     }
   }
 
-  
-
-  useEffect(() => {
-    getAllFoods();
-  }, []);
-
   return (
     <div className="bg-white rounded-xl shadow-md">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 border-b">
         <h2 className="text-xl font-bold">Food List</h2>
 
-        <button className="mt-3 sm:mt-0 bg-green-600 hover:bg-green-700 text-white px-5 py-2 
-        rounded-lg font-semibold " onClick={()=> navigate("/admin/add")}>
+        <button className="mt-3 sm:mt-0 bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg font-semibold" onClick={() => navigate("/admin/add")}>
           + Add Food
         </button>
       </div>
@@ -98,11 +96,11 @@ const AdminFood = () => {
 
                 <td className="px-4 py-3">
                   <div className="flex justify-center gap-2">
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm" onClick={()=>navigate(`/admin/update/${food._id}`)}>
+                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm" onClick={() => navigate(`/admin/update/${food._id}`)}>
                       Update
                     </button>
 
-                    <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm" onClick={()=> handelDeleteFood(food._id)}>
+                    <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm" onClick={() => handelDeleteFood(food._id)}>
                       Delete
                     </button>
                   </div>

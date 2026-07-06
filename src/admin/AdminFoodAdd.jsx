@@ -14,8 +14,8 @@ const AdminFoodAdd = () => {
   const [preview, setPreview] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -33,7 +33,6 @@ const AdminFoodAdd = () => {
     }
   };
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -67,7 +66,8 @@ const AdminFoodAdd = () => {
 
       setImage(null);
       setPreview("");
-      navigate("/admin/food")
+
+      navigate("/admin/food");
     } catch (error) {
       alert(error.response?.data?.message || error.message);
     } finally {
@@ -76,116 +76,229 @@ const AdminFoodAdd = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center p-5">
-      <div className="bg-white shadow-lg rounded-xl w-full max-w-3xl p-8">
-
-        <h1 className="text-3xl font-bold mb-6">
+    <div
+      style={{
+        background: "#fff",
+        borderRadius: "15px",
+        boxShadow: "0 5px 15px rgba(0,0,0,.08)",
+        padding: "35px",
+      }}
+    >
+      <div style={{ marginBottom: "30px" }}>
+        <h1
+          style={{
+            fontSize: "30px",
+            fontWeight: "700",
+            color: "#1e293b",
+            marginBottom: "8px",
+          }}
+        >
           Add New Food
         </h1>
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-5"
+        <p
+          style={{
+            color: "#64748b",
+          }}
+        >
+          Fill all the information below.
+        </p>
+      </div>
+
+      <form onSubmit={handleSubmit}>
+
+        {/* Food Name */}
+
+        <div style={{ marginBottom: "22px" }}>
+          <label
+            style={{
+              display: "block",
+              marginBottom: "8px",
+              fontWeight: "600",
+            }}
+          >
+            Food Name
+          </label>
+
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter food name"
+            value={formData.name}
+            onChange={handleChange}
+            style={inputStyle}
+          />
+        </div>
+
+        {/* Description */}
+
+        <div style={{ marginBottom: "22px" }}>
+          <label
+            style={{
+              display: "block",
+              marginBottom: "8px",
+              fontWeight: "600",
+            }}
+          >
+            Description
+          </label>
+
+          <textarea
+            rows="5"
+            name="description"
+            placeholder="Food description"
+            value={formData.description}
+            onChange={handleChange}
+            style={{
+              ...inputStyle,
+              resize: "none",
+            }}
+          />
+        </div>
+
+        {/* Prices */}
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "20px",
+            marginBottom: "22px",
+          }}
         >
           <div>
-            <label className="font-semibold">
-              Food Name
+            <label
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontWeight: "600",
+              }}
+            >
+              Actual Price
             </label>
 
             <input
-              type="text"
-              name="name"
-              value={formData.name}
+              type="number"
+              name="actualPrice"
+              value={formData.actualPrice}
               onChange={handleChange}
-              placeholder="Enter Food Name"
-              className="w-full border rounded-lg p-3 mt-2 outline-none"
+              placeholder="₹"
+              style={inputStyle}
             />
           </div>
 
           <div>
-            <label className="font-semibold">
-              Description
-            </label>
-
-            <textarea
-              rows="4"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              placeholder="Food Description"
-              className="w-full border rounded-lg p-3 mt-2 outline-none resize-none"
-            />
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-5">
-
-            <div>
-              <label className="font-semibold">
-                Actual Price
-              </label>
-
-              <input
-                type="number"
-                name="actualPrice"
-                value={formData.actualPrice}
-                onChange={handleChange}
-                placeholder="Actual Price"
-                className="w-full border rounded-lg p-3 mt-2"
-              />
-            </div>
-
-            <div>
-              <label className="font-semibold">
-                Discount Price
-              </label>
-
-              <input
-                type="number"
-                name="discoutPrice"
-                value={formData.discoutPrice}
-                onChange={handleChange}
-                placeholder="Discount Price"
-                className="w-full border rounded-lg p-3 mt-2"
-              />
-            </div>
-
-          </div>
-
-          <div>
-
-            <label className="font-semibold">
-              Upload Image
+            <label
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontWeight: "600",
+              }}
+            >
+              Discount Price
             </label>
 
             <input
-              type="file"
-              accept="image/*"
-              onChange={handleImage}
-              className="w-full border rounded-lg p-3 mt-2"
+              type="number"
+              name="discoutPrice"
+              value={formData.discoutPrice}
+              onChange={handleChange}
+              placeholder="₹"
+              style={inputStyle}
             />
-
-            {preview && (
-              <img
-                src={preview}
-                alt="Preview"
-                className="mt-4 w-40 h-40 rounded-lg object-cover border"
-              />
-            )}
-
           </div>
+        </div>
+
+        {/* Image */}
+
+        <div style={{ marginBottom: "30px" }}>
+          <label
+            style={{
+              display: "block",
+              marginBottom: "8px",
+              fontWeight: "600",
+            }}
+          >
+            Upload Image
+          </label>
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImage}
+            style={inputStyle}
+          />
+
+          {preview && (
+            <img
+              src={preview}
+              alt="Preview"
+              style={{
+                width: "180px",
+                height: "180px",
+                objectFit: "cover",
+                borderRadius: "10px",
+                marginTop: "20px",
+                border: "2px solid #ddd",
+              }}
+            />
+          )}
+        </div>
+
+        {/* Buttons */}
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            gap: "15px",
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => navigate("/admin/food")}
+            style={{
+              padding: "12px 24px",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              background: "#64748b",
+              color: "#fff",
+            }}
+          >
+            Cancel
+          </button>
 
           <button
             disabled={loading}
-            className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold"
+            type="submit"
+            style={{
+              padding: "12px 30px",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              background: "#16a34a",
+              color: "#fff",
+              fontWeight: "600",
+            }}
           >
             {loading ? "Creating..." : "Add Food"}
           </button>
+        </div>
 
-        </form>
-
-      </div>
+      </form>
     </div>
   );
+};
+
+const inputStyle = {
+  width: "100%",
+  padding: "12px 15px",
+  border: "1px solid #d1d5db",
+  borderRadius: "8px",
+  outline: "none",
+  fontSize: "15px",
+  boxSizing: "border-box",
 };
 
 export default AdminFoodAdd;

@@ -28,8 +28,6 @@ const FoodUpdatePage = () => {
         }
       );
 
-      console.log(response.data);
-
       const food = response.data.food;
 
       setFormData({
@@ -104,110 +102,227 @@ const FoodUpdatePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10">
-      <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-xl p-8">
+    <div
+      style={{
+        background: "#ffffff",
+        borderRadius: "15px",
+        padding: "35px",
+        boxShadow: "0 5px 15px rgba(0,0,0,.08)",
+      }}
+    >
+      {/* Heading */}
 
-        <h1 className="text-3xl font-bold mb-8">
+      <div style={{ marginBottom: "30px" }}>
+        <h1
+          style={{
+            fontSize: "30px",
+            fontWeight: "700",
+            color: "#1e293b",
+            marginBottom: "8px",
+          }}
+        >
           Update Food
         </h1>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <p
+          style={{
+            color: "#64748b",
+          }}
+        >
+          Update your food information.
+        </p>
+      </div>
 
+      <form onSubmit={handleSubmit}>
+
+        {/* Food Name */}
+
+        <div style={{ marginBottom: "22px" }}>
+          <label
+            style={{
+              display: "block",
+              marginBottom: "8px",
+              fontWeight: "600",
+            }}
+          >
+            Food Name
+          </label>
+
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            style={inputStyle}
+          />
+        </div>
+
+        {/* Description */}
+
+        <div style={{ marginBottom: "22px" }}>
+          <label
+            style={{
+              display: "block",
+              marginBottom: "8px",
+              fontWeight: "600",
+            }}
+          >
+            Description
+          </label>
+
+          <textarea
+            rows="5"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            style={{
+              ...inputStyle,
+              resize: "none",
+            }}
+          />
+        </div>
+
+        {/* Prices */}
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "20px",
+            marginBottom: "22px",
+          }}
+        >
           <div>
-            <label className="block font-semibold mb-2">
-              Food Name
+            <label
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontWeight: "600",
+              }}
+            >
+              Actual Price
             </label>
 
             <input
-              type="text"
-              name="name"
-              value={formData.name}
+              type="number"
+              name="actualPrice"
+              value={formData.actualPrice}
               onChange={handleChange}
-              className="w-full border rounded-lg p-3"
+              style={inputStyle}
             />
           </div>
 
           <div>
-            <label className="block font-semibold mb-2">
-              Description
-            </label>
-
-            <textarea
-              rows={5}
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className="w-full border rounded-lg p-3"
-            />
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-5">
-
-            <div>
-              <label className="block font-semibold mb-2">
-                Actual Price
-              </label>
-
-              <input
-                type="number"
-                name="actualPrice"
-                value={formData.actualPrice}
-                onChange={handleChange}
-                className="w-full border rounded-lg p-3"
-              />
-            </div>
-
-            <div>
-              <label className="block font-semibold mb-2">
-                Discount Price
-              </label>
-
-              <input
-                type="number"
-                name="discoutPrice"
-                value={formData.discoutPrice}
-                onChange={handleChange}
-                className="w-full border rounded-lg p-3"
-              />
-            </div>
-
-          </div>
-
-          <div>
-
-            <label className="block font-semibold mb-2">
-              Food Image
+            <label
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontWeight: "600",
+              }}
+            >
+              Discount Price
             </label>
 
             <input
-              type="file"
-              accept="image/*"
-              onChange={handleImage}
-              className="w-full border rounded-lg p-3"
+              type="number"
+              name="discoutPrice"
+              value={formData.discoutPrice}
+              onChange={handleChange}
+              style={inputStyle}
             />
-
-            {preview && (
-              <img
-                src={preview}
-                alt="Food"
-                className="mt-5 h-48 w-48 rounded-lg object-cover border"
-              />
-            )}
-
           </div>
+        </div>
+
+        {/* Image */}
+
+        <div style={{ marginBottom: "30px" }}>
+          <label
+            style={{
+              display: "block",
+              marginBottom: "8px",
+              fontWeight: "600",
+            }}
+          >
+            Food Image
+          </label>
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImage}
+            style={inputStyle}
+          />
+
+          {preview && (
+            <img
+              src={preview}
+              alt="Food"
+              style={{
+                width: "180px",
+                height: "180px",
+                objectFit: "cover",
+                borderRadius: "10px",
+                marginTop: "20px",
+                border: "2px solid #ddd",
+              }}
+            />
+          )}
+        </div>
+
+        {/* Buttons */}
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            gap: "15px",
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => navigate("/admin/food")}
+            style={{
+              padding: "12px 24px",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              background: "#64748b",
+              color: "#fff",
+            }}
+          >
+            Cancel
+          </button>
 
           <button
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold"
+            type="submit"
+            style={{
+              padding: "12px 30px",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              background: "#2563eb",
+              color: "#fff",
+              fontWeight: "600",
+            }}
           >
             {loading ? "Updating..." : "Update Food"}
           </button>
+        </div>
 
-        </form>
-
-      </div>
+      </form>
     </div>
   );
+};
+
+const inputStyle = {
+  width: "100%",
+  padding: "12px 15px",
+  border: "1px solid #d1d5db",
+  borderRadius: "8px",
+  outline: "none",
+  fontSize: "15px",
+  boxSizing: "border-box",
 };
 
 export default FoodUpdatePage;
