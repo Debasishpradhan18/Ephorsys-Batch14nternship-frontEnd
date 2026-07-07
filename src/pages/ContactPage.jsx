@@ -26,7 +26,7 @@ function ContactPage() {
       setLoading(true);
 
       const response = await axios.post(
-        "http://localhost:8800/api/contact",
+        "https://batch14backendnodejs.onrender.com/api/contact",
         formData
       );
 

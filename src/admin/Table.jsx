@@ -8,7 +8,7 @@ const Table = () => {
   const getAllTables = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8800/api/table/all"
+        "https://batch14backendnodejs.onrender.com/api/table/all"
       );
 
       setTables(response.data.tables);
@@ -32,7 +32,7 @@ const Table = () => {
 
     try {
       const response = await axios.delete(
-        `http://localhost:8800/api/table/delete/${id}`,
+        `hhttps://batch14backendnodejs.onrender.com/api/table/delete/${id}`,
         {
           withCredentials: true,
         }

@@ -48,7 +48,7 @@ const AdminFoodAdd = () => {
       data.append("image", image);
 
       const response = await axios.post(
-        "http://localhost:8800/api/food/create",
+        "https://batch14backendnodejs.onrender.com/api/food/create",
         data,
         {
           withCredentials: true,

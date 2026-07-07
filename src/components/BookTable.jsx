@@ -27,7 +27,7 @@ const BookTable = () => {
       setLoading(true);
 
       const response = await axios.post(
-        "http://localhost:8800/api/table/create",
+        "https://batch14backendnodejs.onrender.com/api/table/create",
         formData
       );
 

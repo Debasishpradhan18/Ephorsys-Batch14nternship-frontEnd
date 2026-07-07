@@ -18,7 +18,7 @@ const Register = () => {
   async function handelRegister(e) {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8800/api/auth/register", { fullName, phoneNo, gender, email, password }, { withCredentials: true })
+      const response = await axios.post("https://batch14backendnodejs.onrender.com/api/auth/register", { fullName, phoneNo, gender, email, password }, { withCredentials: true })
       console.log(response);
       navigate("/login");
 

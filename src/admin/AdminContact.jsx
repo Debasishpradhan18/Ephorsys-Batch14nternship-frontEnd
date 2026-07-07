@@ -11,7 +11,7 @@ const AdminContact = () => {
   const getAllContacts = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8800/api/contact",
+        "https://batch14backendnodejs.onrender.com/api/contact",
         {
           withCredentials: true,
         }
@@ -41,7 +41,7 @@ const AdminContact = () => {
 
     try {
       const response = await axios.delete(
-        `http://localhost:8800/api/contact/${id}`,
+        `https://batch14backendnodejs.onrender.com/api/contact/${id}`,
         {
           withCredentials: true,
         }

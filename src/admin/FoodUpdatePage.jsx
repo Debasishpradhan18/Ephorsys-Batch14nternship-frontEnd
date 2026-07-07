@@ -22,7 +22,7 @@ const FoodUpdatePage = () => {
   const getSingleFood = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8800/api/food/get-single/${id}`,
+        `https://batch14backendnodejs.onrender.com/api/food/get-single/${id}`,
         {
           withCredentials: true,
         }
@@ -81,7 +81,7 @@ const FoodUpdatePage = () => {
       }
 
       const response = await axios.put(
-        `http://localhost:8800/api/food/update/${id}`,
+        `https://batch14backendnodejs.onrender.com/api/food/update/${id}`,
         data,
         {
           withCredentials: true,

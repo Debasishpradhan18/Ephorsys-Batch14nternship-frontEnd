@@ -9,7 +9,7 @@ const OurFoods = () => {
   const getAllFoods = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8800/api/food/all"
+        "https://batch14backendnodejs.onrender.com/api/food/all"
       );
 
       setFoods(response.data.foods);

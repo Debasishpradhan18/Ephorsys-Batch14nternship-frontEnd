@@ -33,7 +33,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const handleLogout = async () => {
     try {
       await axios.get(
-        "http://localhost:8800/api/auth/logout",
+        "https://batch14backendnodejs.onrender.com/api/auth/logout",
         {
           withCredentials: true,
         }
